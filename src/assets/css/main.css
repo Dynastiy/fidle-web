@@ -1,0 +1,319 @@
+@import url('./partials.css');
+.row {
+    padding: 0;
+    margin: 0;
+}
+.span {
+    color: var(--text-300);
+}
+#main-content {
+    padding:1rem 1rem;
+}
+
+#feeds--component {
+    border-radius: 10px;
+}
+.avatar--image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--text-300);
+}
+.connect--component h5 {
+    padding-left: 0.4rem;
+}
+.connect {
+    height: 100vh;
+    overflow-y: scroll;
+    padding: 0.4rem;
+}
+.connect--card {
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 1.5rem;
+}
+
+.start--post{
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 1.5rem;
+}
+.start--post .top {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+}
+
+.post--button {
+    width: 100%;
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 15px 13px;
+    border-radius: 50px;
+    background-color: var(--blue-800);
+    outline: none;
+    color: var(--main-color);
+}
+.start--post .bottom {
+    display: flex;
+    gap: 40px;
+    justify-content: space-between;
+}
+.start--post .bottom .post--item {
+    background-color: var(--accent-color);
+    color: var(--main-color);
+    padding: 8px 30px;
+    border-radius: 20px;
+
+}
+.post--content {
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.post--content img.post--image {
+    height: 250px;
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    object-fit: cover;
+    object-position: top;
+}
+.post--content  .main--post {
+    padding: 1.5rem;
+}
+.span-2 a{
+    color: var(--text-100);
+    font-weight: bold;
+}
+.menu--component {
+    height: 82vh;
+    position: fixed;
+    width: 270px;
+}
+.main-feeds {
+    margin-left: 290px;
+}
+.menu--items {
+    padding-left: 3rem;
+    padding-top: 5rem;
+    
+}
+.menu--items li {
+    margin-bottom: 2rem;
+    padding: 1px solid ;
+}
+.menu--items li a {
+    font-size: 18px;
+    color: var(--disabled-text);
+    display: block;
+    padding: 0.3rem;
+}
+.menu--items li .router-link-exact-active {
+    border-right: 2px solid var(--main-color);
+    color: var(--main-color);
+}
+.menu--items li a:hover {
+    color: var(--main-color);
+}
+.app--header {
+    background-color: #fff;
+}
+.app--header #main-content {
+    display: flex;
+    justify-content: space-between;
+}
+.search--area {
+    background-color: var(--accent-color);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding-right:1rem;
+    color: var(--main-color);
+}
+.search--area input {
+    background-color: transparent;
+    border: transparent;
+    width: 100%;
+    outline: none;
+    padding: 12px 30px;
+}
+.search--area input::placeholder {
+    color: var(--main-color);
+}
+.personal--data  p {
+    background-color: transparent;
+    color: var(--main-color);
+    border: none
+}
+
+
+/* Create Post Modal  */
+.create-post-mask {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 100vh;
+}
+.create-post-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.create-post-content {
+    background-color: #fff;
+    width: 40%;
+    border-radius: 10px;
+    padding: 1rem 2rem;
+}
+.btn-visibility {
+    border: 1px solid var(--main-color);
+    border-radius: 20px;
+}
+.btn-visibility:focus {
+    box-shadow: none;
+}
+.main-post-area textarea {
+    display: block;
+    width: 100%;
+    border: none;
+    /* border-bottom: 1px solid var(--main-color); */
+    outline: none;
+}
+.text-area{border-bottom: 1px solid #DDD5D5;}
+.text-area small {
+    color: #DDD5D5;
+}
+.text-area textarea.form-control {
+    padding: 0;
+}
+.text-area small span.active {
+    color: red;
+}
+.file--icons {
+    color: var(--main-color) ;
+}
+.make--post button {
+    background-color: var(--main-color);
+    border: none;
+    color: #fff;
+    padding: 10px 35px;
+    border-radius: 20px;
+}
+
+.explore .connect--component .connect {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    height: unset;
+    gap: 20px;
+}
+.user--data {
+    background-color: #fff;
+    
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 2rem;
+    border-radius: 10px;
+    height: 82vh;
+    overflow-y: scroll;
+}
+.profile--header a {
+    color: var(--text-100);
+    font-size: 0.9rem;
+}
+.user-profile-card {
+    /* background-image: url(../img/profile-bg.png) ; */
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    height: 82vh;
+    background-repeat: no-repeat;
+}
+.nav--item.active a {
+    font-weight: bold ;
+    position: relative;
+}
+.nav--item.active a::after {
+    content: " ";
+    height: 2px;
+    width: 70%;
+    background-color: var(--text-100);
+    position: absolute;
+    left: 0;
+    bottom: -15px;
+
+}
+
+
+/* Levels  */
+.level {
+    width: 100px;
+    height: 10px;
+    background-color: #DDD5D5;
+    border-radius: 20px;
+}
+
+.Basic {
+    background-color: red;
+    height: 100%;
+    width: 20%;
+    border-radius: 20px;
+}
+
+/* Profile */
+.profile-image-container {
+    text-align: center;
+}
+.profile--img {
+    width: 70%;
+    border-radius: 50%;
+}
+
+
+/* Add Photo and Preview  */
+[type="file"] {
+    height: 0;  
+    width: 0;
+    overflow: hidden;
+  }
+  [type="file"] + label {
+    font-family: sans-serif;
+    /* background: #f44336; */
+    /* padding: 10px 30px; */
+    /* border: 2px solid #f44336; */
+    border-radius: 3px;
+    /* color: #fff; */
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  [type="file"] + label:hover {
+    /* background-color: #fff; */
+    /* color: #f44336; */
+  }
+  #img-preview {
+      position: relative;
+  }
+  #img-preview img {
+      width: 100%;
+      height: 100px;
+      margin-bottom: 1rem;
+      object-fit: cover;
+      object-position: center;
+  }
+  .close--img  {
+      position: absolute;
+      right:1%;
+      top:5%;
+      border-radius: 50%;
+      border: none;
+      background-color: var(--main-color);
+      color: #fff;
+  }
+  .shadow-sm {
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.01) !important; 
+  }
