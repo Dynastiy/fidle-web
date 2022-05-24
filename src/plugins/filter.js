@@ -22,7 +22,7 @@ const dollarFilter = (value) => {
         return '$ 0'
     }
 
-    return numeral(value).format('($ 0.000000000a)')
+    return numeral(value).format('($0a)')
 }
 
 

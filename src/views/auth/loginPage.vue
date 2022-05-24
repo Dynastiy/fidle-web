@@ -138,7 +138,7 @@ export default {
     async login() {
       this.loading = true;
       try {
-        let res = await Axios.post("https://api.fidle.io/api/auth/token/login/", this.credentials);
+        let res = await Axios.post("https://api.fidle.io/auth/token/login/", this.credentials);
         console.log(res.data);
         const user = res.data.user
         const token = res.data.auth_token

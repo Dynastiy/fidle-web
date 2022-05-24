@@ -7,7 +7,7 @@
       <div class="connect">
         <div class="connect--card shadow-sm mb-3" v-for="item in explore" :key="item.id">
           <img v-if="item.current_profile_image"
-            :src="item.current_profile_image.media"
+            :src="item.current_profile_image.media.file"
             class="avatar--image"
             alt=""
           />
@@ -30,7 +30,7 @@
           </p>
           <div class="mt-3">
             <button class="secondary--btn" v-if="!item.following" @click="followUser(item)">Follow</button>
-              <button  class="disabled following" v-else>Following</button>
+              <button  class="disabled following" v-else disabled>Following</button>
             </div>
           
         </div>
@@ -53,6 +53,7 @@ export default {
       let res = await this.$axios.get('/users-suggestion/')
       let data = res.data.results
       this.explore = data
+      console.log(this.explore);
     } catch (error) {
       console.log(error);
     }

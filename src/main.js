@@ -11,7 +11,9 @@ import instance from '@/plugins/axios.js'
 
 import "toastify-js/src/toastify.css"
 import toastify from 'toastify-js'
+
 Vue.prototype.$toastify = toastify
+
 Vue.prototype.$axios = instance
 
 Vue.config.ignoredElements = [/^ion-/]

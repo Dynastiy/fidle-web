@@ -154,6 +154,7 @@
 </template>
 
 <script>
+import Axios from 'axios'
 export default {
   data() {
     return {
@@ -173,7 +174,7 @@ export default {
     async register() {
       this.loading =  true
       try {
-        let res = await this.$auth.post("/auth/users/", this.credentials);
+        let res = await Axios.post("https://api.fidle.io/auth/users/", this.credentials);
         console.log(res);
          this.$toastify({
         text: 'Done',

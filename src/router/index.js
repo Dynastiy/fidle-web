@@ -59,6 +59,30 @@ const routes = [
             component: () => import(/* webpackChunkName: "about" */ '../views/modules/explore/indexPage.vue')
           },
           {
+            path: '/wallet',
+            name: 'wallet',
+            // route level code-splitting
+            // this generates a separate chunk (about.[hash].js) for this route
+            // which is lazy-loaded when the route is visited.
+            component: () => import(/* webpackChunkName: "about" */ '../views/modules/wallet/indexPage.vue')
+          },
+          {
+            path: '/wallet/receive-funds/',
+            name: 'receive-funds',
+            // route level code-splitting
+            // this generates a separate chunk (about.[hash].js) for this route
+            // which is lazy-loaded when the route is visited.
+            component: () => import(/* webpackChunkName: "about" */ '../views/modules/wallet/receiveFunds.vue')
+          },
+          {
+            path: '/wallet/send-funds/',
+            name: 'send-funds',
+            // route level code-splitting
+            // this generates a separate chunk (about.[hash].js) for this route
+            // which is lazy-loaded when the route is visited.
+            component: () => import(/* webpackChunkName: "about" */ '../views/modules/wallet/sendFunds.vue')
+          },
+          {
             path: '/profile',
             name: 'profile',
             // route level code-splitting

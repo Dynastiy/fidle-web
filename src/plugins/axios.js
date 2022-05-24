@@ -6,14 +6,14 @@ import store from '../store'
 Vue.use(Toastify)
 
 import axios from "axios";
-const BASE_URL = 'https://api.fidle.io/api';
+const BASE_URL = 'https://api.fidle.io/';
 
 const instance = axios.create({
     baseURL: BASE_URL,
     headers: {
-        "Content-Type": 'application/json',
-        // "content-type": multipart/form-data,
-        // "Content-Type": "multipart/form-data",
+        // "Content-Type": 'multipart/form-data',
+        'Accept': 'application/json',
+        // "Content-Type": "application/json",
         // "Access-Control-Allow-Origin": "*",
         // "Access-Control-Allow-Headers": "*",
         // "Access-Control-Allow-Methods": 'GET, HEAD, PUT, PATCH, POST, DELETE'
@@ -43,17 +43,17 @@ instance.interceptors.request.use(function(config) {
 instance.interceptors.response.use(function(response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
+    // console.log(response);
     return response;
 }, function(error) {
 
     Toastify({
-        text: error.response.data.message,
+        text: 'Something went wrong',
         className: "info",
         style: {
             background: "red",
         }
     }).showToast();
-    console.log(error.response.data.message)
 
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error

@@ -1,14 +1,15 @@
 <template>
   <div>
     <div class="explore">
+      
       <div class="connect--component component" id="feeds--component">
         <h5 class="font-weight-bold pl-1 pb-3">Connect with People</h5>
-
         <!-- Main Cards for People to connect With  -->
         <div class="connect">
-           <div class="connect--card shadow-sm mb-3" v-for="item in explore" :key="item.id">
+           <div class="connect--card shadow-sm mb-3" v-for="item in explore.results" :key="item.id">
+           <!-- {{ item }} -->
           <img v-if="item.current_profile_image"
-            :src="item.current_profile_image.media"
+            :src="item.current_profile_image.media.file"
             class="avatar--image"
             alt=""
           />
@@ -24,14 +25,14 @@
            @{{ item.username }}
           </p>
           <p class="small">
-           Follower<span v-if="item.followers_count > 1">s</span> - {{ item.followers_count }} 
+           Follower<span v-if="item.followers_count > 1">s</span> - {{ item.followers_count || 0 }} 
           </p>
           <p class="small">
-           Following - {{ item.following_count }} 
+           Following - {{ item.following_count || 0 }} 
           </p>
           <div class="mt-3">
-            <button class="secondary--btn" v-if="!item.following" @click="followUser(item)"> Follow</button>
-              <button  class="disabled following" v-else>Following</button>
+              <button class="secondary--btn" v-if="!item.follower" @click="followUser(item)"> Follow</button>
+              <button  class="disabled following" disabled v-else>Following</button>
             </div>
           
         </div>
@@ -53,8 +54,9 @@ export default {
     async getSuggestions(){
       try {
       let res = await this.$axios.get('/users-suggestion/')
-      let data = res.data.results
+      let data = res.data
       this.explore = data
+      console.log(this.explore);
     } catch (error) {
       console.log(error);
     }
@@ -63,6 +65,7 @@ export default {
       try {
         let res = await this.$axios.post(`users/${item.id}/follow/`);
         this.getSuggestions()
+        console.log(res);
         return res
       } catch (error) {
         console.log(error);

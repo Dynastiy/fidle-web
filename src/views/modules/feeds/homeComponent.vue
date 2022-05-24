@@ -3,12 +3,12 @@
     <div class="feeds-page mt-3">
       <div class="">
         <div class=" row">
-          <div  class="col-md-9">
-          <feeds @open="modalOpen"/>
-        </div>
-        <div class="col-md-3">
-          <explore />
-        </div>
+          <div  class="col-md-9" style="padding-left:10rem; padding-right:10rem">
+            <feeds @open="modalOpen"/>
+          </div>
+          <div class="col-md-3">
+            <explore />
+          </div>
         </div>
       </div>
 
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import feeds from "./components/feedsComponent.vue";
+import feeds from "./components/feedComponent.vue";
 import explore from "./components/exploreComponent.vue";
 import CreatePost from "@/components/modals/createPost.vue";
 export default {
