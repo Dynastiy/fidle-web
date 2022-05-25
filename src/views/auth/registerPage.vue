@@ -13,12 +13,12 @@
       <div class="sign-up-content">
         <div class="registration--form">
           <form action="" @submit.prevent="register">
-            <div class="mb-5">
-              <img src="@/assets/img/logo.svg" class="mb-4" width="60" alt="" />
+            <div class="mb-4">
+              <img src="@/assets/img/logo.svg" class="mb-3" width="60" alt="" />
               <h2 class="font-weight-bold">Create your Account</h2>
               <h6>Create Original Posts To Earn Money.</h6>
             </div>
-            <div class="mb-3">
+            <div class="mb-2">
               <div class="d-flex" style="gap: 10px">
                 <div class="">
                   <label for=""
@@ -56,7 +56,7 @@
                 </div>
               </div>
             </div>
-            <div class="mb-3">
+            <div class="mb-2">
               <label for="">Email<span class="text-danger">*</span> </label>
               <input
                 class="login-input"
@@ -71,7 +71,7 @@
                 >{{ error }}
               </small>
             </div>
-            <div class="mb-3">
+            <div class="mb-2">
               <label for="">Username<span class="text-danger">*</span> </label>
               <input
                 class="login-input"
@@ -120,7 +120,7 @@
                 >{{ error }}
               </small>
             </div>
-            <div class="mb-3 text-center">
+            <div class="mb-2 text-center">
               <small>
                 By signing up you agree to our
                 <span class="span">Terms</span> and
@@ -132,7 +132,7 @@
                 <span class="sr-only">Loading...</span>
               </div>
             </div>
-            <div class="mb-3" v-else>
+            <div class="mb-2" v-else>
               <button class="main--btn w-100">Signup</button>
             </div>
 

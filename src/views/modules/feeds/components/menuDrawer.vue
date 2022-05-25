@@ -19,7 +19,7 @@
               <span>Explore</span>
             </router-link>
           </li>
-          <li>
+          <!-- <li>
             <a href="javascript:void(0)" @click="openModal" class="d-flex align-items-center" style="gap:20px; color: var(--main-color)">
               <span>
                 <Icon icon="bx:message-square-add" width="24px" height="24px"/>
@@ -34,7 +34,7 @@
               </span>
               <span>Message</span>
             </router-link>
-          </li>
+          </li> -->
            <li>
             <router-link to="/wallet" class="d-flex align-items-center" style="gap:20px">
               <span>

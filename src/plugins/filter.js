@@ -9,6 +9,13 @@ const timeStamp = (value) => {
     }
 }
 
+const colorSplit = (value) => {
+    // if (value) {
+    //     return (String(value)).split(" ").join();
+    // }
+    return !value ? '' : `${String(value).split(" ").join()}`
+}
+
 const timeRange = (value) => {
     if (value) {
         // return moment(String(value)).format('hh:mm A')
@@ -52,4 +59,4 @@ const percentageFilter = (value) => {
     return !value ? '0%' : `${Number(value).toFixed(2) * 100}%`
 }
 
-export { dollarFilter, percentFilter, percentageFilter, timeStamp, timeRange, dollarFilter2, sliceHash, sliceHash2, sliceContent }
+export { dollarFilter, percentFilter, percentageFilter, timeStamp, timeRange, dollarFilter2, sliceHash, sliceHash2, sliceContent, colorSplit }

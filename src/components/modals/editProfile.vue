@@ -4,13 +4,13 @@
             <div class="update-profile-content">
                 <div class="d-flex p-3 bg-white shadow-lg align-items-center justify-content-between sticky-top">
                     <div class="d-flex align-items-center" style="gap:10px">
-                        <div role="button">
+                        <div role="button" @click="$emit('close')">
                             <Icon icon="carbon:close-outline" style="font-size:25px"/>
                         </div>
                         <h5>Edit Profile</h5>
                     </div>
                     <div>
-                        <button class="save--btn">Save</button>
+                        <button class="save--btn" @click="$emit('close')">Save</button>
                     </div>
                 </div>
                 <div :style="{'background-image': `userData.profile_image`}" class="user--image p-3">

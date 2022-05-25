@@ -76,7 +76,7 @@ input[type=checkbox], input[type=radio] {
 }
 .sign-up-content .login-input {
     border: 1px solid var(--blue-700);
-    padding: 10px 15px;
+    padding: 6px 12px;
 }
 .sign-up-content {
     height: 100vh;

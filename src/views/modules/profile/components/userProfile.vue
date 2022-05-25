@@ -45,7 +45,7 @@
         </div>
 
         <div class="wallet--balance text-center mt-5">
-          <button class="secondary--btn py-2">
+          <button class="secondary--btn py-2" @click="profile =!profile">
                     Edit Profile
                 </button>
             <!-- <h6>Your Balance</h6>
@@ -61,7 +61,7 @@
         </div>
       </div>
     </div>
-    <EditProfile v-show="profile"/>
+    <EditProfile v-show="profile" @close="close"/>
   </div>
 </template>
 
@@ -76,10 +76,13 @@ export default {
     return {
       user:{},
       levels: {},
-      profile: true
+      profile: false
     };
   },
   methods: {
+    close(){
+      this.profile =!this.profile
+    },
     async getUser(){
       try {
         let res = await this.$axios.get('auth/users/me/')

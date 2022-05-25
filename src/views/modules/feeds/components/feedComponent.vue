@@ -3,9 +3,11 @@
     <div>
 
         <CreatePost @toOpen="openModal" @getPosts="getFeeds" />
+
+
        
         <!-- Posts  -->
-      <div class="post--content shadow-sm mt-3" v-for="(feed, index) in feeds.results" :key="index">
+      <div class="post--content shadow-sm mt-3" v-for="(feed, index) in feeds" :key="index">
         <div v-if="feed.media">
             <div v-for="(media_item, index) in feed.media" :key="index">
               <video
@@ -25,7 +27,7 @@
         
         </div>
         <div class="main--post">
-            <div class="main-writeup" :class="{ active: (feed.media.length === 0 ) }">
+            <div class="main-writeup" :class="{ active: (feed.media.length === 0 ) }" :style="{'background-image': `linear-gradient(45deg, ${colorSplit(feed.color)}`}">
                 <p class="">
                 {{ feed.content }}.
                 <!-- <span class="span-2"
@@ -121,13 +123,21 @@
           </div>
         </div>
       </div>
+
+        <!-- view More Posts -->
+        <!-- <div class="mt-3 see-more-feeds text-center">
+          <button @click="viewMore(page+1)">
+            See More
+          </button>
+        </div> -->
+      
     </div>
   </div>
 </template>
 
 <script>
 // import Axios from 'axios'
-import {timeRange, sliceContent, dollarFilter} from '@/plugins/filter'
+import {timeRange, sliceContent, dollarFilter, colorSplit} from '@/plugins/filter'
 import { Icon } from "@iconify/vue2";
 import CreatePost from '@/components/modals/createPost.vue'
 export default {
@@ -140,6 +150,7 @@ export default {
       timeRange,
       sliceContent,
       dollarFilter,
+      colorSplit,
       // isActive: false,
       formData: {
         media: null,
@@ -150,7 +161,8 @@ export default {
         content: ''
       },
       comments: false,
-      commentsList: []
+      commentsList: [],
+      page: 1
     }
   },
   methods:{
@@ -202,7 +214,7 @@ export default {
     async getFeeds(){
       try {
         const res = await this.$axios.get('user/feeds/');
-        this.feeds = res.data;
+        this.feeds = res.data.results;
         console.log(res.data);
         // let feeds = res.data.results
         // this.$store.dispatch("addFeeds", { feeds });
@@ -210,22 +222,18 @@ export default {
         console.log(error);
       }
     },
-    getNextUser(page = 1) {
-      window.onscroll = () => {
-        let bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
-        if (bottomOfWindow) {
-            this.$axios.get('user/feeds/?page='+(page)+Number(1))
-            .then((res)=>
-            {
-              console.log(res.data);
-              let dataObj = res.data
-              this.feeds = dataObj;
-              // this.feeds.push(dataObj);
-            }
-            )
-            // this.feeds = res.data;
-            // console.log(res.data);
-      }
+    async viewMore(page) {
+       try {
+        const res = await this.$axios.get('user/feeds/?page='+page);
+        this.feeds = res.data.results;
+        // let newfeeds = Object.assign({}, feedObj)
+        // this.feeds.post(feedObj)
+        // console.log(newfeeds);
+        // this.feeds.push(newfeeds)
+        // let feeds = res.data.results
+        // this.$store.dispatch("addFeeds", { feeds });
+      } catch (error) {
+        console.log(error);
       }
     },
     async likePost(feed){
@@ -243,7 +251,7 @@ export default {
     this.getFeeds()
   },
   mounted(){
-    this.getNextUser()
+    // this.getNextUser()
   }
  
 }

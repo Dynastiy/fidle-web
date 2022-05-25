@@ -1,18 +1,28 @@
 <template>
   <div>
     <div>
-        <!-- First Post  -->
+        <!-- Posts  -->
       <div class="post--content shadow-sm mt-3" v-for="(feed, index) in feeds" :key="index">
-        <div v-if="feed.media.length !== 0 ">
-          <img v-for="(media_item, index) in feed.media" :key="index"
-          :src="media_item.media"
-          alt=""
-          srcset=""
-          class="post--image"
-        />
+        <div v-if="feed.media">
+            <div v-for="(media_item, index) in feed.media" :key="index">
+              <video
+              controls
+              style="width: 100%"
+              v-if="media_item.extension === 'mp4'"
+              :src="media_item.file"
+              ></video>
+              <img 
+              v-else
+              :src="media_item.file"
+              alt=""
+              srcset=""
+              class="post--image"
+            />
+            </div>
+        
         </div>
-         <div class="main--post">
-            <div class="main-writeup" :class="{ active: (feed.media.length === 0 ) }">
+        <div class="main--post">
+            <div class="main-writeup" :class="{ active: (feed.media.length === 0 ) }" :style="{'background-image': `linear-gradient(45deg, ${colorSplit(feed.color)}`}">
                 <p class="">
                 {{ feed.content }}.
                 <!-- <span class="span-2"
@@ -113,7 +123,7 @@
 </template>
 
 <script>
-import {timeRange, sliceContent, dollarFilter} from '@/plugins/filter'
+import {timeRange, sliceContent, dollarFilter, colorSplit} from '@/plugins/filter'
 import { Icon } from "@iconify/vue2";
 export default {
   components:{
@@ -124,6 +134,7 @@ export default {
       timeRange,
       sliceContent,
       dollarFilter,
+      colorSplit,
       feeds: [],
        payload: {
         content: ''

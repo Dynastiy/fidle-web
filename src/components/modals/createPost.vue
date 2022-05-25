@@ -53,13 +53,77 @@
           </div>
 
           <div class="main-post-area mt-3">
-            <form action="" @submit.prevent="create_fidle()">
-              <input type="text" name="" v-model="payload.content" required>
-              <input type="file" @change="onFileChange" value="Select File">
-              <input type="submit">
-            </form>
+            <label class="mb-3" for="">What do you want to talk about?</label>
+            <!-- Image Preview COntainer  -->
+              <div>
+                <div id="img-preview" v-show="imgPreview">
+                  <div class="text-right mb-3">
+                  <button @click="closePreview" class="close--img"><Icon icon="clarity:window-close-line" width="30px" height="30px" /></button>
+                  <img :src="imgSrc" alt="" srcset="">
+                </div>
+                </div>
+              </div>
+            <div class="text-area">
+              <textarea
+                class="form-control"
+                name=""
+                id="message"
+                maxlength="200"
+                @keyup="checkLength"
+                v-model="payload.content"
+                :class="{active: isActive}"
+                :style="{'background-image': `linear-gradient(45deg, ${colorSplit(payload.color)}`}"
+              ></textarea>
+              <div
+                class="
+                  d-flex
+                  align-items-center
+                  justify-content-between
+                  mt-3
+                  mb-3
+                "
+              >
+                <small>
+                  <span id="lower" class="">{{ current_length }}</span
+                  >/{{ max_length }}
+                </small>
+                <small v-show="max_characters" class="text-danger"
+                  >Maximum Characters Reached</small
+                >
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-between mt-3">
+            <div class="d-flex align-items-center preview" style="gap:30px">
+              <div role="button">
+                <input @change="onFileChange" type="file" accept="image/*" id="choose-file" name="choose-file" />
+                <label for="choose-file"><Icon icon="bytesize:photo" class="file--icons" /></label>
+              </div>
+              <div class="d-flex align-items-center" style="gap:10px">
+                <div class="rounded-lg d-flex align-items-center justify-content-center" @click="removeColor" role="button" style="width:20px; height:20px; background-color: rgb(255, 255, 240); box-shadow: inset 1px 1px 8px rgba(0, 0, 0, 0.1);">
+                  x
+                </div>
+                <div class="rounded-lg" style="width:20px; height:20px; background: linear-gradient(45deg,  #41A844, #76E54B)" role="button" @click="selectColorOne">
+                 
+                </div>
+                <div class="rounded-lg" style="width:20px; height:20px; background: linear-gradient(45deg,   #3C9077, #28E7AE)" role="button" @click="selectColorTwo">
+                  
+                </div>
+                <div class="rounded-lg" style="width:20px; height:20px; background: linear-gradient(45deg,   #984E36, #DA6640)" role="button" @click="selectColorThree">
+                  
+                </div>
+                <div class="rounded-lg" style="width:20px; height:20px; background: linear-gradient(45deg,   #B03E58, #E95375)" role="button" @click="selectColorFour">
+                  
+                </div>
+                <div class="rounded-lg" style="width:20px; height:20px; background: linear-gradient(45deg,   #E95375, #AE5CFD)" role="button" @click="selectColorFive">
+                  
+                </div>
+              </div>
+            </div>
+            <div class="make--post">
+              <button @click="create_fidle()" type="submit">Post</button>
+            </div>
           </div>
-          <!-- </div> -->
+            </div>
         </div>
       </div>
     </div>
@@ -68,6 +132,7 @@
 
 
 <script>
+import {colorSplit} from '@/plugins/filter'
 import { Icon } from "@iconify/vue2";
 import axios from "axios";
 export default {
@@ -76,10 +141,14 @@ export default {
   },
   data(){
     return {
+      colorSplit,
+      dataModel: {},
+      formData: new FormData(),
       content: '',
        payload: {
         media: null,
         content: "",
+        color: "",
       },
       user: {},
       current_length: "",
@@ -95,11 +164,54 @@ export default {
       create_post: false,
       loading: false,
       error: false,
+      new_color: '',
+      isActive: false,
     };
   },
   methods: {
+    selectColorOne(){
+      if (this.isActive === false) {
+         this.isActive = true;
+      }
+      this.payload.color = "#41A844 #76E54B"
+      console.log(this.payload.color);
+     
+    },
+    selectColorTwo(){
+      if (this.isActive === false) {
+         this.isActive = true;
+      }
+      this.payload.color = '#3C9077 #28E7AE'
+      console.log(this.payload.color);
+    },
+    selectColorThree(){
+      if (this.isActive === false) {
+         this.isActive = true;
+      }
+      this.payload.color = '#984E36 #DA6640'
+      console.log(this.payload.color);
+    },
+    selectColorFour(){
+      if (this.isActive === false) {
+         this.isActive = true;
+      }
+      this.payload.color = '#B03E58 #E95375'
+      console.log(this.payload.color);
+    },
+    selectColorFive(){
+      if (this.isActive === false) {
+         this.isActive = true;
+      }
+      this.payload.color = '#E95375 #AE5CFD'
+      console.log(this.payload.color);
+    },
     goToProfile(){
       this.$router.push('/profile')
+    },
+    removeColor(){
+      this.isActive = false
+      console.log(this.payload.color);
+      console.log(this.isActive);
     },
     checkLength() {
       const messageEle = document.getElementById("message");
@@ -127,37 +239,52 @@ export default {
       this.create_post = !this.create_post
       this.error = false
     },
-    onFileChange() {
-      alert('Hello World')
-      // this.imgPreview = true;
-      // var input = e.target;
-      // this.payload.media = input.files[0];
-      // console.log(this.payload.media);
-      // if (e.target.files.length > 0) {
-      //   var src = URL.createObjectURL(e.target.files[0]);
-      //   this.imgSrc = src;
-      // }
+    onFileChange(e) {
+      // alert('Hello World')
+      this.imgPreview = true;
+      var input = e.target;
+      this.payload.media = input.files[0];
+      console.log(this.payload.media);
+      if (e.target.files.length > 0) {
+        var src = URL.createObjectURL(e.target.files[0]);
+        this.imgSrc = src;
+        this.isActive = false;
+      document.getElementById('message').style.backgroundImage = null;
+      this.payload.color = "";
+      }
+
+      
     },
     closePreview(){
       this.formData.media = null;
       this.imgPreview = false
     },
+    
     create_fidle(){
-      console.log(this.formData);
+      this.create_post = !this.create_post
+      this.loading = true
+      this.$emit('getPosts');
       let formData = new FormData();
-      formData.append("content", this.formData.content);
-      formData.append("media", this.formData.media);
-      axios.post('https://api.fidle.io/posts/', formData,{
-        headers:{
-          "Authorization": "Token" + " " + this.$store.state.token,
-        }
+      formData.append("content", this.payload.content);
+      formData.append("color", this.payload.color);
+      formData.append("media", this.payload.media);
+            fetch( 'https://api.fidle.io/posts/', {
+          method: 'POST',
+          headers: {
+              'Authorization': 'Token '+this.$store.state.token,
+              'Accept': 'application/json',
+              // 'Content-Type': 'application/json;charset=utf-8'
+          },
+          // body: JSON.stringify( this.payload )
+          body: formData
       })
-      .then((res) => {
-        console.log(res);
+      .then((res)=>{
+          console.log(res);
+      }).catch((err)=>{
+        console.log(err);
+        this.error = true
       })
-      .catch((err)=>{
-        console.log(err.response.data);
-      })
+      this.loading = false
     },
      async getUser(){
       try {
