@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="explore">
+    <div class="explore other--pages">
       
       <div class="connect--component component" id="feeds--component">
         <h5 class="font-weight-bold pl-1 pb-3">Connect with People</h5>

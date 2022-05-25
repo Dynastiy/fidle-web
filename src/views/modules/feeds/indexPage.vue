@@ -5,7 +5,10 @@
         <div class="">
           <Menu @toOpen="openModal"/>
         </div>
-        <div class="main-feeds"><router-view/></div>
+        <div class=""><router-view/></div>
+        <div>
+            <Messenger/>
+          </div>
       </div>
 
       <div>
@@ -18,10 +21,13 @@
 <script>
 import Menu from "./components/menuDrawer.vue";
 import CreatePost from "@/components/modals/createPost.vue";
+
+import Messenger from '@/components/messengerModal.vue'
 export default {
   components: {
     Menu,
-    CreatePost
+    CreatePost,
+    Messenger
   },
   data(){
     return{

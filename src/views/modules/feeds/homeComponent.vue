@@ -2,11 +2,11 @@
   <div>
     <div class="feeds-page mt-3">
       <div class="">
-        <div class=" row">
-          <div  class="col-md-9" style="padding-left:10rem; padding-right:10rem">
+        <div class="">
+          <div  class="">
             <feeds @open="modalOpen"/>
           </div>
-          <div class="col-md-3">
+          <div class="explore--component">
             <explore />
           </div>
         </div>
@@ -27,7 +27,7 @@ export default {
   components: {
     feeds,
     explore,
-    CreatePost
+    CreatePost,
   },
   data(){
     return{

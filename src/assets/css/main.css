@@ -7,12 +7,9 @@
     color: var(--text-300);
 }
 #main-content {
-    padding:1rem 3rem;
+    /* padding:1rem 3rem; */
 }
 
-#feeds--component {
-    border-radius: 10px;
-}
 .avatar--image {
     width: 40px;
     height: 40px;
@@ -27,18 +24,19 @@
 .connect {
     height: 100vh;
     overflow-y: scroll;
-    padding: 0.4rem;
+    padding: 0.8rem;
 }
 .connect--card {
-    border-radius: 10px;
-    background-color: #fff;
-    padding: 1.5rem;
+    /* border-radius: 10px; */
+    /* background-color: #fff; */
+    padding: 0.6rem 0.4rem;
 }
 
 .start--post{
     background-color: #fff;
     border-radius: 10px;
     padding: 1.5rem;
+    border:  1px solid rgba(0, 0, 0, 0.08);
 }
 .start--post .top {
     display: flex;
@@ -52,11 +50,16 @@
     display: block;
     width: 100%;
     border: none;
-    padding: 15px 13px;
+    padding: 10px 13px;
+    font-size: 14px;
     border-radius: 50px;
-    background-color: var(--blue-800);
+    border:  1px solid rgba(0, 0, 0, 0.08);
+    /* background-color: var(--blue-800); */
     outline: none;
-    color: var(--main-color);
+    color: var(--gray-500);
+}
+.post--button:hover{
+    background-color:rgba(0, 0, 0, 0.05) ;
 }
 .start--post .bottom {
     display: flex;
@@ -90,16 +93,37 @@
     font-weight: bold;
 }
 .menu--component {
-    height: 82vh;
+    height: 100vh;
+    overflow-y: scroll;
+    padding-top:4rem ;
     position: fixed;
-    width: 270px;
+    width: 300px;
+    top: 0;
+    left: 0;
+    /* background: linear-gradient(
+        var(--dark-color) 20%, var(--dark-color) 20% 40%, var(--accent-color)40% 60%, var(--accent-color) 60% 80%, var(--accent-color) 80%); */
+        background-color: var(--accent-color);
+        border-right: 1px solid  var(--accent-color);
 }
 .main-feeds {
-    margin-left: 290px;
+    margin-left: 300px;
+    margin-right: 400px;
+}
+.other--pages {
+    margin-left: 300px;
+    margin-right: 100px;
+}
+.explore--component {
+    position: fixed;
+    right: 100px;
+    top: 80px;
+    width: 300px;
+    background-color: var(--accent-color);
+    border-left: 1px solid  var(--accent-color);
 }
 .menu--items {
-    padding-left: 3rem;
-    padding-top: 5rem;
+    /* padding-left: 3rem; */
+    padding-top: 3rem;
     
 }
 .menu--items li {
@@ -113,7 +137,7 @@
     padding: 0.3rem;
 }
 .menu--items li .router-link-exact-active {
-    border-right: 2px solid var(--main-color);
+    /* border-right: 2px solid var(--main-color); */
     color: var(--main-color);
 }
 .menu--items li a:hover {
@@ -121,6 +145,9 @@
 }
 .app--header {
     background-color: #fff;
+    margin-left: 300px;
+    margin-right: 100px;
+    border-bottom: 1px solid  rgba(0, 0, 0,0.08);
 }
 .app--header #main-content {
     display: flex;
@@ -328,7 +355,14 @@
       color: #fff;
   }
   .shadow-sm {
-      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.01) !important; 
+      box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.02) !important; 
+  }
+
+  .post--content {
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+  .post--content:hover {
+      background-color: rgba(0, 0, 0, 0.01);
   }
 
   .comment--area input {
@@ -475,4 +509,158 @@
       padding: 0.3rem 1rem;
       border-radius: 20px;
   }
+
+
+  /* User Profile In User Feeds  */
+  .main-user-profile {
+      background-color: #fff;
+      width: 80%;
+      margin: 0 auto;
+      padding: 1.3rem;
+      border-radius: 20px;
+      margin-top: 3rem;
+  }
+  .main-user-profile img {
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      border:  1px solid rgba(0, 0, 0, 0.08);
+      padding: 0.2rem;
+  }
+  .stories{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    overflow-y: scroll;
+  }
+  .single--story{
+     border:  1px solid rgba(0, 0, 0, 0.08); 
+     padding: 0.3rem 0.6rem;
+     border-radius: 10px;
+  } 
   
+  /* Hide scrollbar for Chrome, Safari and Opera */
+.stories::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .stories {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .colored--area{
+      background-color: var(--dark-color);
+      position: absolute;
+      width: 100%;
+      height: 280px;
+      z-index: -999;
+      top: 0;
+  }
+  
+
+  /* Messenger  Modal*/
+  .messenger--component {
+      position: fixed;
+      right: 0;
+      z-index: 99999;
+      top: 0;
+      height: 100vh;
+      width: 100px;
+      background-color: var(--accent-color) ;
+      border-left: 1px solid var(--accent-color);
+  }
+  .messenger--component .top {
+    border-bottom: 1px solid #fff;
+  }
+  .main-chat-area {
+      height: 79vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+  }
+  .messenger--component .main-chat-area .active-img{
+      position: relative;
+  }
+  .messenger--component .main-chat-area .online {
+      background-color: var(--success-color);
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      position: absolute;
+      right: -8%;
+      top: 1%;
+      border: 2px solid #fff;
+  }
+
+  .messenger--component.active {
+      width: 220px;
+      background-color: #fff;
+      border-left: 1px solid rgba(0, 0, 0, 0.2);
+  }
+  .messenger--component .username {
+      display: none;
+  }
+  .messenger--component.active .main--togle {
+      display: none;
+  }
+  .messenger--component.active .username {
+      display: block;
+  }
+
+  .username hr {
+      margin: 0;
+  }
+  .messenger--component .search--field {
+      border: 1px solid var(--gray-400);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      padding-left: 0.4rem;
+  }
+  .messenger--component .search--field input[type='search']{
+      border: none;
+      outline: transparent;
+      padding: 0.3rem;
+      background-color: transparent;
+      width: 100%;
+  }
+  .messenger--component .search--field input[type='search']::placeholder{
+      color:  var(--gray-400);
+      font-size: 0.8rem;
+  }
+  .messenger--component.active  .active--users {
+      text-align: left;
+  }
+  .messenger--component.active .main-chat-area{
+      height: 75vh;
+      align-items: flex-start;
+      padding-left: 1rem;
+  }
+
+  /* Chat Interface  */
+  .chat--interface {
+      position: fixed;
+      right: 10%;
+      bottom: 0;
+      background-color: #fff;
+      height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 270px;
+      padding: 1rem;
+      box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.08);
+      border-radius:10px 10px 0 0;
+  }
+
+  .chat--interface input {
+      border: transparent;
+      outline: transparent;
+  }
+  .chat--interface input::placeholder{
+    font-size: 0.8rem;
+  }

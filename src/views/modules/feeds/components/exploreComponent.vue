@@ -1,12 +1,14 @@
 <template>
   <div>
     <div class="connect--component component" id="feeds--component">
-      <h5 class="font-weight-bold pl-1 pb-3">Connect with People</h5>
+      
 
       <!-- Main Cards for People to connect With  -->
       <div class="connect">
-        <div class="connect--card shadow-sm mb-3" v-for="item in explore" :key="item.id">
-          <img v-if="item.current_profile_image"
+        <h5 class="font-weight-bold pl-1 pb-3">Connect with People</h5>
+        <div class="connect--card mb-2 d-flex" v-for="item in explore" :key="item.id" style="gap:10px">
+          <div>
+            <img v-if="item.current_profile_image"
             :src="item.current_profile_image.media.file"
             class="avatar--image"
             alt=""
@@ -16,22 +18,19 @@
             class="avatar--image"
             alt=""
           />
-          <h5 class="font-weight-bold mt-3 text-capitalize">
-              {{ item.name }}
-          </h5>
-          <p class="small">
-           @{{ item.username }}
-          </p>
-          <p class="small">
-           Follower<span v-if="item.followers_count > 1">s</span> - {{ item.followers_count }} 
-          </p>
-          <p class="small">
-           Following - {{ item.following_count }} 
-          </p>
-          <div class="mt-3">
+          </div>
+          <div>
+            <h6 class="font-weight-bold text-capitalize m-0">
+                {{ item.name }}
+            </h6>
+            <small class="small text-muted m-0">
+            @{{ item.username }}
+            </small>
+          </div>
+          <div class=" ml-auto">
             <button class="secondary--btn" v-if="!item.following" @click="followUser(item)">Follow</button>
               <button  class="disabled following" v-else disabled>Following</button>
-            </div>
+          </div>
           
         </div>
         

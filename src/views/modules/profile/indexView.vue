@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="user--profile">
+    <div class="user--profile other--pages">
       <div class="row">
         <div class="col-md-9">
           <div class="user--data shadow-sm bg-white">

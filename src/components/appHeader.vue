@@ -1,14 +1,10 @@
 <template>
   <div>
     <div class="">
-      <div class="app--header shadow-sm">
+      <div class="app--header py-3">
         <div id="main-content">
-          <div class="logo">
-            <img src="@/assets/img/logo.svg" width="50" alt="" />
-          </div>
-
           <div
-            class="right--content d-flex align-items-center"
+            class=" d-flex align-items-center justify-content-between"
             style="gap: 30px"
           >
             <div class="search--area">
@@ -17,7 +13,8 @@
                 <Icon icon="akar-icons:search" width="24px" height="24px" />
               </span>
             </div>
-            <div
+            <div>
+              <div
               class="user-details d-flex align-items-center"
               style="gap: 10px"
             >
@@ -38,6 +35,7 @@
                 <h6 class="font-weight-bold mb-0">{{ userData.first_name}} {{ userData.last_name}} </h6>
                 <p role="button" class="small" @click="logout">Logout</p>
               </div>
+            </div>
             </div>
           </div>
         </div>

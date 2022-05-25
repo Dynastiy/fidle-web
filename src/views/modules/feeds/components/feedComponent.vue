@@ -1,33 +1,70 @@
 <template>
   <div>
-    <div>
+    <div class="main-feeds px-5">
+
+      <Stories class="mb-3"/>
 
         <CreatePost @toOpen="openModal" @getPosts="getFeeds" />
-
-
        
         <!-- Posts  -->
-      <div class="post--content shadow-sm mt-3" v-for="(feed, index) in feeds" :key="index">
+      <div class="post--content  mt-3" role="button" v-for="(feed, index) in feeds" :key="index" data-aos="fade-up">
+      <!-- User Info  -->
+      <div class="d-flex p-4 justify-content-between align-items-center">
+        <div class="left-user-info d-flex align-items-center " style="gap:20px">
+            <div >
+              <img v-if="feed.user.current_profile_image"
+                :src="feed.user.current_profile_image.media.file"
+                class="avatar--image"
+                alt=""
+              />
+              <img v-else
+                src="https://cdn.pixabay.com/photo/2015/03/04/22/35/head-659652_960_720.png"
+                class="avatar--image"
+                alt=""
+              />
+            </div>
+            <div>
+              <h6 class="text-capitalize font-weight-bold"> {{ feed.user.first_name }} {{ feed.user.last_name }} </h6>
+              <p class="small text-capitalize"> {{ timeRange(new Date(feed.date_created*1000.0)) }}   </p>
+            </div>
+            
+          </div>
+
+          <div>
+            
+            <div class="btn-group dropleft">
+              <div type="button" class="" data-toggle="dropdown" aria-expanded="false">
+                <Icon icon="charm:menu-kebab" />
+              </div>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Save</a>
+                <a class="dropdown-item" href="#">Mint to NFT</a>
+              </div>
+            </div>
+          </div>
+      </div>
         <div v-if="feed.media">
-            <div v-for="(media_item, index) in feed.media" :key="index">
+            <div v-for="(media_item, index) in feed.media" :key="index" class="px-3">
               <video
               controls
               style="width: 100%"
-              v-if="media_item.extension === 'mp4'"
+              v-if="media_item.extension == 'mp4' || 'gif' || 'mov' || '3gp' "
               :src="media_item.file"
+              height="300px"
+               class="rounded-lg"
               ></video>
               <img 
               v-else
               :src="media_item.file"
               alt=""
               srcset=""
-              class="post--image"
+              class="post--image rounded-lg"
             />
             </div>
         
         </div>
-        <div class="main--post">
-            <div class="main-writeup" :class="{ active: (feed.media.length === 0 ) }" :style="{'background-image': `linear-gradient(45deg, ${colorSplit(feed.color)}`}">
+        <div class="main--post px-3 ">
+            <div class="main-writeup rounded-lg" :class="{ active: (feed.media.length === 0 ) }" :style="{'background-image': `linear-gradient(45deg, ${colorSplit(feed.color)}`}">
                 <p class="">
                 {{ feed.content }}.
                 <!-- <span class="span-2"
@@ -36,25 +73,7 @@
               </p>
             </div>
           <div class="user-info mt-3 d-flex align-items-center justify-content-between" style="padding:0 1.5rem 1.5rem 1.5rem">
-            <div class="left-user-info d-flex align-items-center" style="gap:20px">
-              <div >
-                <img v-if="feed.user.current_profile_image"
-                  :src="feed.user.current_profile_image.media.file"
-                  class="avatar--image"
-                  alt=""
-                />
-                <img v-else
-                  src="https://cdn.pixabay.com/photo/2015/03/04/22/35/head-659652_960_720.png"
-                  class="avatar--image"
-                  alt=""
-                />
-              </div>
-              <div>
-                <h6 class="text-capitalize font-weight-bold"> {{ feed.user.first_name }} {{ feed.user.last_name }} </h6>
-                <p class="small text-capitalize"> {{ timeRange(new Date(feed.date_created*1000.0)) }}   </p>
-              </div>
-              <div class="amount small">{{dollarFilter(feed.worth) }} </div>
-            </div>
+            <div class="amount small">{{dollarFilter(feed.worth) }} </div>
             <div
               class="right-user-info d-flex align-items-center"
               style="gap: 20px"
@@ -111,11 +130,11 @@
                   </div>
                   <div class="d-flex align-items-center">
                   <div v-if="comment.has_liked" >
-                    <Icon icon="bxs:like" style="background-color: var(--main-color); font-size: 24px !important;" />
-                  </div>
-                  <div v-else  @click="likePost(comment)">
-                    <Icon icon="ant-design:like-outlined" style="color: var(--main-color); font-size: 24px !important;" role="button" />
-                  </div>
+                  <Icon icon="flat-color-icons:like" style=" font-size: 24px !important;" />
+                </div>
+                <div v-else  @click="likeComment(comment)">
+                  <Icon icon="icon-park-outline:like" style="color: red; font-size: 24px !important;" role="button" />
+                </div>
                   <sup> {{ comment.likes_count }} </sup>
                 </div>
                 </div>
@@ -140,10 +159,12 @@
 import {timeRange, sliceContent, dollarFilter, colorSplit} from '@/plugins/filter'
 import { Icon } from "@iconify/vue2";
 import CreatePost from '@/components/modals/createPost.vue'
+import Stories from '@/components/storiesView.vue'
 export default {
   components:{
     Icon, 
-    CreatePost
+    CreatePost,
+    Stories
   },
   data(){
     return{
@@ -162,7 +183,8 @@ export default {
       },
       comments: false,
       commentsList: [],
-      page: 1
+      page: 1,
+      feed_id: ''
     }
   },
   methods:{
@@ -195,6 +217,8 @@ export default {
       this.payload = {}
     },
     async getComments(feed){
+      this.feed_id = feed.id
+      console.log(this.feed_id);
     this.comments = ( this.comments === feed.id ) ? null : feed.id;
      if (this.comments) {
         
@@ -244,6 +268,16 @@ export default {
         console.log(error);
       }
       this.getFeeds()
+    },
+    async likeComment(comment){
+      // console.log(comment);
+      try {
+        let res = await this.$axios.post(`posts/${this.feed_id}/comments/${comment.id}/like/`)
+        console.log(res);
+      } catch (error) {
+        console.log(error);
+      }
+      this.getComments()
     },
     
   },

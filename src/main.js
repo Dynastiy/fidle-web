@@ -16,6 +16,9 @@ Vue.prototype.$toastify = toastify
 
 Vue.prototype.$axios = instance
 
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+
 Vue.config.ignoredElements = [/^ion-/]
 
 Vue.config.productionTip = false
@@ -23,5 +26,8 @@ Vue.config.productionTip = false
 new Vue({
     router,
     store,
+    mounted() {
+        AOS.init()
+      },
     render: h => h(App)
 }).$mount('#app')

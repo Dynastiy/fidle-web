@@ -21,7 +21,7 @@ html {
 }
 
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 4px;
     /* width of the entire scrollbar */
 }
 
@@ -31,11 +31,11 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--dark-color);
+    background-color: #fff;
     /* color of the scroll thumb */
     border-radius: 30px;
     /* roundness of the scroll thumb */
-    border: 2px solid var(--accent-color-bg);
+    border: 1px solid #fff;
     /* creates padding around scroll thumb */
 }
 

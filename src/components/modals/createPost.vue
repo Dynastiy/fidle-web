@@ -11,7 +11,7 @@
           />
         </div>
         <div role="button" class="post--button" @click="create_post = !create_post">
-         Start a Post
+         <span v-if="user.username">What's new, {{ user.username }}</span>
         </div>
       </div>
     </div>
